@@ -10,7 +10,7 @@ const CatchFriends = (props) => (
 		<h3> Friends To Catch Up with </h3>
 		
 		 {props.friends.map(f => 
-		 	<div className="Catch">
+		 	<div key ={f.id} className="Catch">
 		 	<div>
 			 	<h4> {f.name} </h4>
 			 	<h4> {f.contact} </h4>

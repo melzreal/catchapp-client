@@ -3,16 +3,7 @@ import './App.css';
 
 import CatchFriend from './CatchFriends';
 
-const friends = [{
-	name: "Marta",
-	contact: "maaarrrsts1133a@gmail.com",
-	reached_out: false
-},
-{
-	name: "Fran",
-	contact: "frans209432@gmail.com",
-	reached_out: false
-}]
+const API_URL = process.env.REACT_APP_API_URL;
 
 const CatchFriends = () => 
 	<div>
@@ -22,12 +13,26 @@ const CatchFriends = () =>
 
 class App extends Component{
 
+	constructor(props){
+		super(props);
+		this.state = {
+			friends: []
+		}
+	}
+
+	componentDidMount(){
+		fetch(`${API_URL}/catchfriends`)
+		.then(resp => resp.json())
+		.then(friends => this.setState({friends}))
+	}
+
 	render(){
+		console.log(this.state)
 		return(
 
 	<div className="App"> 
 		App Contaaainerooouu 
-		<CatchFriend friends ={friends} />
+		<CatchFriend friends ={this.state.friends} />
 	</div>
 		);
 
