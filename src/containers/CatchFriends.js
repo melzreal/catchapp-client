@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './CatchFriends.css';
 import FriendCard from '../components/FriendCard';
-import CatchFriendForm from '../containers/CatchFriendForm'
+import CatchFriendForm from './CatchFriendForm'
 
 class CatchFriends extends Component {
 
