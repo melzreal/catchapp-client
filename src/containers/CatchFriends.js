@@ -1,27 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './CatchFriends.css';
+import FriendCard from '../components/FriendCard';
+import CatchFriendForm from '../containers/CatchFriendForm'
+
+class CatchFriends extends Component {
 
 
 
-const CatchFriends = (props) => (
+	render() { 
 
- 
-	<div> 
-		<h3> Friends To Catch Up with </h3>
-		
-		 {props.friends.map(f => 
-		 	<div key ={f.id} className="Catch">
-		 	<div>
-			 	<h4> {f.name} </h4>
-			 	<h4> {f.contact} </h4>
-			  <input type="checkbox" checked={props.reached_out} />
-			  <br/>
-		    </div>
-		    </div>
-		)}
-		
-	</div>
+		return (
+
+			<div>
+				<div> 
+				<h3> Friends To Catch Up with </h3>			
+				{this.props.friends.map(friend => <FriendCard key={friend.id} friend={friend} /> )}
+
+				</div>
+				<CatchFriendForm />
+			</div>
 	
-);
+		);
+	}
+}
 
 export default CatchFriends;

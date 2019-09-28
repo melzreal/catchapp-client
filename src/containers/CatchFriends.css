@@ -1,6 +1,6 @@
 .Catch {
-
-  background: whitesmoke;
+  display: inline-block;
+  background: linear-gradient(to right, rgba(202,242,250,0), rgba(22, 108, 125,1));
   width: 230px;
   height: 150px;
   margin: 10px;
