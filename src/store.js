@@ -5,12 +5,14 @@ import {
 	combineReducers
 } from 'redux';
 
-import catchfriends from './reducers/catchfriendsReducer'
-import thunk from 'redux-thunk';
+import friends from './reducers/catchfriendsReducer';
+import friendFormData from './reducers/friendFormData';
+import thunk from 'redux-thunk'; 
 
 
 const reducers = combineReducers({
-	friends: catchfriends
+	friends,
+	friendFormData
 });
 
 

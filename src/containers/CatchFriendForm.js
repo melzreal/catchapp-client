@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { updatefriendFormData } from '../actions/friendform'
 
 class CatchFriendForm extends Component {
 
@@ -11,13 +12,17 @@ class CatchFriendForm extends Component {
   
 
   handleOnChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
+
+    const { name, value} = event.target;
+
+    const currentFormData = Object.assign({}, this.props.friendFormData, {
+      [name]: value
     });
+
+    this.props.updatefriendFormData(currentFormData);
   }
 
   handleOnSubmit = event => {
-
 
     event.preventDefault();
     this.setState({ 
@@ -31,6 +36,9 @@ class CatchFriendForm extends Component {
 
 
   render() {
+
+    const {friendname, contact, reached_out} = this.props.friendFormData;
+
     return (
       <div className="container">
         <div className="row">
@@ -49,7 +57,7 @@ class CatchFriendForm extends Component {
                         type="text"
                         name="friendname"
                         onChange={this.handleOnChange} 
-                        value={this.state.friendname}/>
+                        value={friendname}/>
                
                     </div>
                   </div>
@@ -62,7 +70,7 @@ class CatchFriendForm extends Component {
                         type="text"
                         name="contact"
                          onChange={this.handleOnChange} 
-                         value={this.state.contact}/>
+                         value={contact}/>
                     </div>
                   </div>
 
@@ -71,10 +79,10 @@ class CatchFriendForm extends Component {
                     <div className="col-md-2">
                       <input
                         className="form-control"
-                        type="text"
+                        type="checkbox"
                         name="reached_out"
                          onChange={this.handleOnChange} 
-                         value={this.state.reached_out}/>
+                         value={reached_out}/>
                     </div>
                   </div>
 
@@ -93,5 +101,14 @@ class CatchFriendForm extends Component {
   }
 }
 
-export default CatchFriendForm;
 
+const mapStateToProps = (state) => {
+  return ({
+    friendFormData: state.friendFormData
+  })
+
+}
+
+
+
+export default connect(mapStateToProps, {updatefriendFormData})(CatchFriendForm);
