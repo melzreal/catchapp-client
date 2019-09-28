@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatefriendFormData } from '../actions/friendform'
+import { createFriend } from '../actions/catchfriends'
 
 class CatchFriendForm extends Component {
 
   state = {
   	friendname: '',
   	contact: '',
-  	reached_out: ''
+  	reached_out: false
   } 
   
 
   handleOnChange = event => {
 
-    const { name, value} = event.target;
+    const target = event.target;
+    const name = target.name;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
 
     const currentFormData = Object.assign({}, this.props.friendFormData, {
       [name]: value
@@ -25,10 +28,12 @@ class CatchFriendForm extends Component {
   handleOnSubmit = event => {
 
     event.preventDefault();
+    this.props.createFriend(this.props.friendFormData);
+
     this.setState({ 
 	    friendname: '',
 	  	contact: '',
-	  	reached_out: ''
+	  	reached_out: false
 	  });
 
   };
@@ -75,14 +80,16 @@ class CatchFriendForm extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="reached_out" className="col-md-2 control-label">Reached out? </label>
+                    <label htmlFor="reached_out" 
+                    className="col-md-2 control-label">Reached out? </label>
                     <div className="col-md-2">
                       <input
                         className="form-control"
                         type="checkbox"
                         name="reached_out"
+                        
                          onChange={this.handleOnChange} 
-                         value={reached_out}/>
+                          />
                     </div>
                   </div>
 
@@ -111,4 +118,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {updatefriendFormData})(CatchFriendForm);
+export default connect(mapStateToProps, {updatefriendFormData, createFriend})(CatchFriendForm);

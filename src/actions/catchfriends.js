@@ -21,4 +21,28 @@ export const getFriends = () => {
 		}
 }
 
- 
+const addFriend = friend => {
+	return {
+		type: 'ADD_FRIEND_SUCCESS',
+		friend
+	}
+}
+
+
+export const createFriend = friend => {
+
+	return dispatch => {
+	
+		return fetch(`${API_URL}/catchfriends`, {
+			method: "POST",
+			headers:{
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({catchfriend: friend})
+		})
+		.then(resp => resp.json())
+		.then(friend => dispatch(addFriend(friend)))
+		 
+
+ }
+}
