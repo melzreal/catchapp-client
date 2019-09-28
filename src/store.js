@@ -5,21 +5,12 @@ import {
 	combineReducers
 } from 'redux';
 
+import catchfriends from './reducers/catchfriendsReducer'
 import thunk from 'redux-thunk';
 
-const catchfriendsReducer = ( state = [], action) => {
-
-	switch(action.type){
-        case 'GET_FRIENDS_SUCCESS':
-		return action.friends;
-
-		default:
-		return state;
-	}
-}
 
 const reducers = combineReducers({
-	friends: catchfriendsReducer
+	friends: catchfriends
 });
 
 

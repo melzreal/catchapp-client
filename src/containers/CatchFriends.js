@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import './CatchFriends.css';
 import FriendCard from '../components/FriendCard';
 import CatchFriendForm from './CatchFriendForm'
+import { getFriends } from '../actions/catchfriends';
+
+
 
 class CatchFriends extends Component {
 
 
+	componentDidMount(){
+	 this.props.getFriends();
+	}
 
 	render() { 
 
@@ -24,4 +31,14 @@ class CatchFriends extends Component {
 	}
 }
 
-export default CatchFriends;
+
+const mapStateToProps = (state) => {
+  return ({
+    friends: state.friends
+  })
+
+}
+
+
+
+export default connect(mapStateToProps, { getFriends })(CatchFriends);
