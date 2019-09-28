@@ -1,14 +1,19 @@
-export default( state = {
+const initialState = {
 	friendname: '',
   	contact: '',
-  	reached_out: ''
-}, action) => {
+  	reached_out: false
+}
 
-console.log(action.type)
+export default( state = initialState, action) => {
+
+
 
 	switch(action.type) {
         case 'UPDATED_DATA':
 		return action.friendFormData;
+
+		case 'RESET_FORM':
+		return initialState;
 
 		default:
 		return state;

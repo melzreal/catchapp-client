@@ -1,3 +1,7 @@
+import { resetFormData } from './friendform';
+
+
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 //action creators
@@ -41,8 +45,9 @@ export const createFriend = friend => {
 			body: JSON.stringify({catchfriend: friend})
 		})
 		.then(resp => resp.json())
-		.then(friend => dispatch(addFriend(friend)))
-		 
-
- }
+		.then(friend => {
+			dispatch(addFriend(friend))
+			dispatch(resetFormData())
+		})
+    }
 }

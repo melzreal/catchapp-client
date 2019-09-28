@@ -28,13 +28,7 @@ class CatchFriendForm extends Component {
   handleOnSubmit = event => {
 
     event.preventDefault();
-    this.props.createFriend(this.props.friendFormData);
-
-    this.setState({ 
-	    friendname: '',
-	  	contact: '',
-	  	reached_out: false
-	  });
+    this.props.createFriend(this.props.friendFormData);   
 
   };
 
@@ -87,7 +81,7 @@ class CatchFriendForm extends Component {
                         className="form-control"
                         type="checkbox"
                         name="reached_out"
-                        
+
                          onChange={this.handleOnChange} 
                           />
                     </div>

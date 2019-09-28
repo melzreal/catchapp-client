@@ -1,6 +1,6 @@
-export default( state = [], action) => {
 
-console.log(action.type)
+
+export default( state = [], action) => {
 
 	switch(action.type){
         case 'GET_FRIENDS_SUCCESS':
@@ -8,6 +8,7 @@ console.log(action.type)
 
 		case 'ADD_FRIEND_SUCCESS':
 		return state.concat(action.friend);
+
 
 		default:
 		return state;
