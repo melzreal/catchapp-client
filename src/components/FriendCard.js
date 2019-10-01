@@ -1,17 +1,8 @@
 import React from 'react';
 
 
-// const handleChange = () => {
-//   const reached = this.state.reached_out;
-//   this.setState({reached_out: !reached});
-
-// }
-
-//onClick={this.handleChange()}
-
 
 const FriendCard = ({ friend }) => (
-
 
 
 	<div key={friend.id} className="Catch">

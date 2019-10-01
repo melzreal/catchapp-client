@@ -7,6 +7,7 @@ import { getFriends } from '../actions/catchfriends';
 
 
 
+
 class CatchFriends extends Component {
 
 
@@ -17,7 +18,6 @@ class CatchFriends extends Component {
 	render() { 
 
 		return (
-
 			<div>
 				<div> 
 				<h3> Friends To Catch Up with </h3>			
@@ -30,6 +30,15 @@ class CatchFriends extends Component {
 		);
 	}
 }
+
+// const handleChange = () => {
+//   const reached = this.state.reached_out;
+//   this.setState({reached_out: !reached});
+
+// }
+
+//onClick={this.handleChange()}
+
 
 
 const mapStateToProps = (state) => {

@@ -25,6 +25,7 @@ class CatchFriendForm extends Component {
     this.props.updatefriendFormData(currentFormData);
   }
 
+
   handleOnSubmit = event => {
 
     event.preventDefault();
