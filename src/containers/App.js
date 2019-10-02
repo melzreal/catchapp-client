@@ -1,64 +1,20 @@
 import React, {Component} from 'react';
 
 import './App.css';
-import CatchFriend from './CatchFriends';
+import CatchFriends from './CatchFriends';
 import User from './Users';
-import UserLogin from '../components/UserLogin'
+import UserLoginForm from './UserLoginForm'
 
-const API_URL = process.env.REACT_APP_API_URL;
 
 
 class App extends Component{
 
-constructor(){
-	super();
-
-	this.state = {
-		currentUser: null,
-		loginForm: {
-			email: '',
-			password: ''
-		}
-	};
-}
-
-handleLoginChange = event => {
-	const {name, value} = event.target;
-
-	this.setState({
-		loginForm: {
-			...this.state.loginForm,
-			[name]: value
-		}
-	});
-}
-
-
-handleLoginSubmit = event => {
-
-	event.preventDefault();
-
-	const userInfo = this.state.loginForm;
-	const headers = {
-		method: "POST",
-		headers:{
-			'Content-Type': 'application/json'
-		},
-			body: JSON.stringify({user: userInfo})
-	}
-
-	 fetch(`${API_URL}/login`, headers)
-	 .then(resp => resp.json())
-	 .then(userJSON => {
-	 	userJSON.error ? alert("Invalid Credentials") : this.setState({ currentUser: userJSON})
-	 })
-	 .catch(console.log)
-
-}
 
 
 	render(){
+		
 		return(
+
 	<div>
 		<div className="Navigation">
 			<header>
@@ -71,13 +27,10 @@ handleLoginSubmit = event => {
 			</header>
 		 </div>
 			<div className="App"> 
-				<CatchFriend />
-				<UserLogin 
-				handleLoginChange={this.handleLoginChange}
-				handleLoginSubmit={this.handleLoginSubmit}
-				email={this.state.loginForm.email}
-				password={this.state.loginForm.password}
-				/>
+				<h3> You are Logged in as: </h3>
+				<CatchFriends />
+				<UserLoginForm />
+
 
 				
 			</div>

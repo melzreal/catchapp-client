@@ -39,12 +39,25 @@ export const getUsers = () => {
 }
 
 export const setLoggedInUser = () => {
+
+
 	return dispatch => {
+
+			const userInfo = this.state.loginForm;
+			const headers = {
+			method: "POST",
+			headers:{
+			'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({user: userInfo})
+			}
 	
-		return fetch(`${API_URL}/users`)
-				.then(resp => resp.json())
-				.then(users => dispatch(setUsers(users)))
-				.catch(error => console.log(error));
+		return fetch(`${API_URL}/login`, headers)
+			 .then(resp => resp.json())
+			 .then(userJSON => {
+			 	userJSON.error ? alert("Invalid Credentials") : dispatch(loginUser(userJSON))
+			 })
+
 			
 		}
 }

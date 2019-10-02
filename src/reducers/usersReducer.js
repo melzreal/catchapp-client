@@ -1,6 +1,9 @@
 export default( state = [], action) => {
 
 	switch(action.type){
+		case 'UPDATED_LOGIN_DATA':
+		return action.userLoginFormData;
+
 		case 'LOGIN_USER_SUCCESS':
 		return action.user;
 

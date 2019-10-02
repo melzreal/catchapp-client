@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updatefriendFormData } from '../actions/friendform'
-import { createFriend } from '../actions/catchfriends'
+import { updatefriendFormData } from '../actions/friendform';
+import { createFriend } from '../actions/catchfriends';
 
 class CatchFriendForm extends Component {
 
