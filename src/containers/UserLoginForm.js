@@ -52,7 +52,7 @@ class UserLoginForm extends Component {
 	 fetch(`${API_URL}/login`, headers)
 	 .then(resp => resp.json())
 	 .then(userJSON => {
-	 	debugger;
+	 	
 	 	userJSON.error ? alert("Invalid Credentials") : this.setState({ currentUser: userJSON})
 	 })
 
