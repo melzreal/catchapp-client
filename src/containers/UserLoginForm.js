@@ -1,74 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { updateLoginFormData } from '../actions/userloginform';
 import { setLoggedInUser } from '../actions/getusers';
+import UserLoginContainer from './UserLoginContainer';
 
-
-const API_URL = process.env.REACT_APP_API_URL;
 
 class UserLoginForm extends Component {
 
-	state = {
-		currentUser: null,
-		loginForm: {
+constructor(props){
+	super(props)
+	this.state = {
+		user: '',
 		email: '',
 		password: ''
-		}
+	   
 	}
-
+}
 
   handleLoginChange = event => {
 	const {name, value} = event.target;
 
 		this.setState({
-			loginForm: {
-				...this.state.loginForm,
+			
+				...this.state,
 				[name]: value
-			}
+			
 		});
+
 	// const userLoginFormData = Object.assign({}, this.props.loginForm, {
  //      [name]: value
  //    });
 
-     this.props.updateLoginFormData(this.state);	
+ 	 const userLoginFormData = this.state;
+     this.props.updateLoginFormData(userLoginFormData);	
 
 	}
 
 
   handleLoginSubmit = event => {
-
+  	
 	event.preventDefault();
-
-	const userInfo = this.state.loginForm;
-	const headers = {
-		method: "POST",
-		headers:{
-			'Content-Type': 'application/json'
-		},
-			body: JSON.stringify({user: userInfo})
-	}
-
-	 fetch(`${API_URL}/login`, headers)
-	 .then(resp => resp.json())
-	 .then(userJSON => {
-	 	
-	 	userJSON.error ? alert("Invalid Credentials") : this.setState({ currentUser: userJSON})
-	 })
-
+	this.props.setLoggedInUser(this.state);
+	
 	
 
 };
 
 	  render() {
 	  
-
-		const {email, password} = this.state;
+	 
+		const {email, password} = this.props;
 
 			return(
 				<div className="Login"> 
 
-			
 					<form onSubmit ={this.handleLoginSubmit}>
 
 						<label> Email: 
@@ -85,6 +70,10 @@ class UserLoginForm extends Component {
 						
 						<input type="submit" value="Submit" />
 					</form>
+
+					<div> 
+						
+					</div>
 				</div>
 
 				); 
@@ -95,7 +84,7 @@ class UserLoginForm extends Component {
 
 const mapStateToProps = (state) => {
   return ({
-    loginForm: state.loginForm
+    userLoginFormData: state
   })
 
 }

@@ -1,11 +1,16 @@
-export default( state = [], action) => {
+export default( state = {
+	    user: '',
+		email: '',
+		password: '' }, action) => {
 
 	switch(action.type){
 		case 'UPDATED_LOGIN_DATA':
 		return action.userLoginFormData;
 
 		case 'LOGIN_USER_SUCCESS':
+	
 		return action.user;
+		
 
         case 'GET_USERS_SUCCESS':
 		return action.users;

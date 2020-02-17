@@ -1,4 +1,3 @@
-
 const API_URL = process.env.REACT_APP_API_URL;
 
 //action creators
@@ -8,6 +7,20 @@ const setUsers = users => {
 		users
 	}
 }
+
+
+//async actions
+export const getUsers = () => {
+	return dispatch => {
+	
+		return fetch(`${API_URL}/users`)
+				.then(resp => resp.json())
+				.then(users => dispatch(setUsers(users)))
+				.catch(error => console.log(error));
+			
+		}
+}
+
 
 const loginUser = user => {
 	return {
@@ -26,36 +39,20 @@ const addUser = user => {
 
 
 
-//async actions
-export const getUsers = () => {
-	return dispatch => {
-	
-		return fetch(`${API_URL}/users`)
-				.then(resp => resp.json())
-				.then(users => dispatch(setUsers(users)))
-				.catch(error => console.log(error));
-			
-		}
-}
 
-export const setLoggedInUser = () => {
-
+export const setLoggedInUser = user => {
 
 	return dispatch => {
-
-			const userInfo = this.state.loginForm;
-			const headers = {
+		return fetch(`${API_URL}/login`, {
 			method: "POST",
 			headers:{
 			'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({user: userInfo})
-			}
-	
-		return fetch(`${API_URL}/login`, headers)
+			body: JSON.stringify({user: user})
+			})
 			 .then(resp => resp.json())
-			 .then(userJSON => {
-			 	userJSON.error ? alert("Invalid Credentials") : dispatch(loginUser(userJSON))
+			 .then(user => {
+			 	user.error ? alert("Invalid Credentials") : dispatch(loginUser(user))
 			 })
 
 			

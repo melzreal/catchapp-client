@@ -2,14 +2,14 @@ import React from 'react';
 
 
 
-const UserCard = ({ user }) => (
+const UserCard = props => (
 
 
-	<div key={user.id} className="User">
+	<div key={props.id} className="Catch">
 		 	<div>
-			 	<h4> {user.name} </h4>
-			 	
-				
+			 	<h4> {props.name} </h4>
+			 	<h4> {props.email} </h4>
+			
 			   <br/>
 			 </div>
 	</div>
@@ -21,3 +21,5 @@ const UserCard = ({ user }) => (
 
 
 export default UserCard;
+
+

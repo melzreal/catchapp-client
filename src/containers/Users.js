@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import UserCard from '../components/UserCard'
-import { setLoggedInUser } from '../actions/getusers';
+import { getUsers } from '../actions/getusers';
 import UserLoginForm from './UserLoginForm'
 
 
@@ -9,7 +9,7 @@ class Users extends Component {
 
 
 	componentDidMount(){
-	 this.props.setLoggedInUser();
+	 this.props.getUsers();
 	}
 
 	render() { 
@@ -17,7 +17,8 @@ class Users extends Component {
 		return (
 			<div>
 				<div> 
-				<h3> Users </h3>			
+				<h3> Users </h3>		
+
 				{this.props.users.map(user => <UserCard key={user.id} user={user} /> )}
 				
 				<UserLoginForm />
@@ -35,11 +36,11 @@ class Users extends Component {
 
 const mapStateToProps = (state) => {
   return ({
-    currentUser: state.user
+    users: state.users
   })
 
 }
 
 
 
-export default connect(mapStateToProps,{ setLoggedInUser })(Users);
+export default connect(mapStateToProps,{ getUsers })(Users);
